@@ -6,9 +6,9 @@
  {
    int i=2;
    int x;
-   long int z;
+   long long z;
    time_t timer;
-   struct tm *t;
+   struct tm* t;
    char week[7][7]={"일", "월", "화", "수", "목", "금", "토"};
 
 	if(argv[1]==NULL)
@@ -20,34 +20,36 @@
 	   while(1)
 	   {	
 		if(strcmp(argv[i],"yesterday")==0)
-	
-	    	   timer = time(NULL)-(24*60*60);
-		
+		{
+	    	   timer = time(NULL)-(24*60*60);		
+		   i++;
+}		}
+		   
 		else if(strcmp(argv[i],"years")==0)
 		{
 		   x = atoi(argv[i-1]);
 		   if(x!=0)
-		   
-			z = 24*60*60*365*x;
-		   
+		   {
+			z = 24*60*60*x;
+		   }
 		   else	
-		  
-			z = 24*60*60*365;
-		   
+		   {
+			z = 24*60*60;
+		   }
 		   if(strcmp(argv[i+1],"ago")==0)
-		   
+		   {
 			timer = time(NULL)-z;
-		   
+		   }
 	       	   else
-		   
+		   {
 			timer = time(NULL)+z;  
-		   
-		   
+		   }
+		  i++; 
 		}
 		else if(argv[i]==NULL)
 		   break;
 
-		i++;
+		
 	   }	
 	}				
   t = localtime(&timer);
